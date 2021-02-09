@@ -18,7 +18,6 @@ public class PauseScreen extends ScreenObject {
 
 	public PauseScreen() {
 		super(Color.black);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -36,17 +35,23 @@ public class PauseScreen extends ScreenObject {
 			}
 		};
 		
+		ButtonWidget shopBtn = new ButtonWidget((Window.getFrame().getWidth()/2)-100, 300, 200, 40, "Shop") {
+			public void onClick() {
+				
+			}
+		};
+		
 		ButtonWidget exitBtn = new ButtonWidget((Window.getFrame().getWidth()/2)-100, 400, 200, 40, "Exit") {
 			public void onClick() {
 				MenuHandler.setCurrentMenu(MenuHandler.getScreenFromList(MenuHandler.MainMenuType));
 				Main.setCurrentState(GameState.menu);
 				ObjectHandler.removeAll();
-				GameMusic.setSong(SongType.MenuMusic, true);
-				GameMusic.playSong();
+				GameMusic.playSong(SongType.MenuMusic);
 			}
 		};
 		
 		widgets.add(resumeBtn);
+		widgets.add(shopBtn);
 		widgets.add(exitBtn);
 	}
 

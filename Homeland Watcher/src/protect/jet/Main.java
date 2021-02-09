@@ -50,8 +50,7 @@ public class Main implements EngineLoopInterface {
 		EnemyGraphics.setup();
 		PlayerGraphics.setup();
 
-		GameMusic.setSong(SongType.MenuMusic, true);
-		GameMusic.playSong();
+		GameMusic.playSong(SongType.MenuMusic);
 	}
 
 	@Override
