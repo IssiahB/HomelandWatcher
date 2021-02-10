@@ -10,7 +10,7 @@ import protect.jet.gui.WidgetObject;
 public class ButtonWidget extends WidgetObject {
 	private int buttonMargin = 2;
 	private Color backgroundColor = Color.black;
-	private Color forgroundColor = Color.green;
+	private Color forgroundColor = Color.red;
 
 	private Rectangle forgroundButton = new Rectangle(x, y, width, height);
 	private Rectangle backgroundButton = new Rectangle((x - buttonMargin), (y - buttonMargin),

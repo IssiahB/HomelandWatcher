@@ -1,9 +1,9 @@
 package protect.jet.handle;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import protect.jet.graphic.Image;
 import protect.jet.gui.ScreenObject;
 import protect.jet.gui.screen.MainScreen;
 import protect.jet.gui.screen.PauseScreen;
@@ -16,7 +16,7 @@ public class MenuHandler {
 	public static final int PauseMenuType = 1;
 	
 	private static void loadMenus() {
-		currentMenu = new MainScreen(Color.blue);
+		currentMenu = new MainScreen(Image.getImage("res/preview/gamePreview.png"));
 		
 		screens.add(currentMenu);
 		screens.add(new PauseScreen());

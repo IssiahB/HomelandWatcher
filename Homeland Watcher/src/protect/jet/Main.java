@@ -55,15 +55,10 @@ public class Main implements EngineLoopInterface {
 
 	@Override
 	public void render(Graphics2D g) {
-		// background
-		g.drawImage(Backgrounds.getBackground(3, 5), 0, 0,
-				Window.getFrame().getWidth(), Window.getFrame().getHeight(),
-				null);
-
 		if (currentState == GameState.game || currentState == GameState.pause) {
+			LevelHandler.renderCurrentLevel(g);
 			ObjectHandler.renderObjects(g);
 			BulletObject.renderAll(g);
-			LevelHandler.renderCurrentLevel(g);
 			if (currentState == GameState.pause) {
 				MenuHandler.getCurrentMenu().render(g);
 			}
@@ -77,9 +72,9 @@ public class Main implements EngineLoopInterface {
 	@Override
 	public void update() {
 		if (currentState == GameState.game) {
+			LevelHandler.updateCurrentLevel();
 			ObjectHandler.updateObjects();
 			BulletObject.updateAll();
-			LevelHandler.updateCurrentLevel();
 			if (KeyboardControl.escKey) {
 				setCurrentState(GameState.pause);
 				MenuHandler.setCurrentMenu(MenuHandler.getScreenFromList(MenuHandler.PauseMenuType));
