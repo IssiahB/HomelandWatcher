@@ -1,5 +1,7 @@
 package protect.jet;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import org.jarzarr.code.EngineLoop;
@@ -13,7 +15,6 @@ import protect.jet.audio.GameSoundEffects;
 import protect.jet.graphic.Backgrounds;
 import protect.jet.graphic.EnemyGraphics;
 import protect.jet.graphic.PlayerGraphics;
-import protect.jet.gui.screen.PauseScreen;
 import protect.jet.handle.LevelHandler;
 import protect.jet.handle.MenuHandler;
 import protect.jet.handle.ObjectHandler;
@@ -41,10 +42,12 @@ public class Main implements EngineLoopInterface {
 	@Override
 	public void cleanup() {
 		GameSoundEffects.cleanup();
+		GameMusic.stopCurrentSong();
 	}
 
 	@Override
 	public void init() {
+		drawLoadingImage();
 		MenuHandler.setup();
 		Backgrounds.setup();
 		EnemyGraphics.setup();
@@ -62,6 +65,10 @@ public class Main implements EngineLoopInterface {
 			if (currentState == GameState.pause) {
 				MenuHandler.getCurrentMenu().render(g);
 			}
+		}
+		
+		if (currentState == GameState.gameover) {
+			MenuHandler.getCurrentMenu().render(g);
 		}
 
 		if (currentState == GameState.menu) {
@@ -84,10 +91,18 @@ public class Main implements EngineLoopInterface {
 		if (currentState == GameState.pause) {
 			MenuHandler.getCurrentMenu().update();
 		}
+		
+		if (currentState == GameState.gameover) {
+			MenuHandler.getCurrentMenu().update();
+		}
 
 		if (currentState == GameState.menu) {
 			MenuHandler.getCurrentMenu().update();
 		}
+	}
+	
+	private static void drawLoadingImage() {
+		
 	}
 
 	public static GameState getCurrentState() {

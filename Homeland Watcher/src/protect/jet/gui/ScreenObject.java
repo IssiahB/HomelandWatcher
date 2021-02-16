@@ -18,7 +18,7 @@ public abstract class ScreenObject implements MouseInterface {
 	protected List<WidgetObject> widgets = new ArrayList<WidgetObject>();
 
 	protected BufferedImage backgroundImage = null;
-	protected Color backgroundColor = Color.black;
+	protected Color backgroundColor = null;
 
 	public ScreenObject(BufferedImage background) {
 		this.backgroundImage = background;
@@ -27,6 +27,10 @@ public abstract class ScreenObject implements MouseInterface {
 
 	public ScreenObject(Color background) {
 		this.backgroundColor = background;
+		MouseControl.addMouse(this);
+	}
+	
+	public ScreenObject() {
 		MouseControl.addMouse(this);
 	}
 
@@ -39,13 +43,16 @@ public abstract class ScreenObject implements MouseInterface {
 	}
 
 	public void render(Graphics2D g) {
-		if (backgroundImage == null) {
-			g.setColor(backgroundColor);
-			g.fillRect(0, 0, Window.getFrame().getWidth(),
-					Window.getFrame().getHeight());
-		} else
-			g.drawImage(backgroundImage, 0, 0, Window.getCanvas().getWidth(),
-					Window.getCanvas().getHeight(), null);
+		// if image and color is not set do nothing
+		if (!(backgroundImage == null && backgroundColor == null)) {
+			if (backgroundImage == null) {
+				g.setColor(backgroundColor);
+				g.fillRect(0, 0, Window.getFrame().getWidth(),
+						Window.getFrame().getHeight());
+			} else
+				g.drawImage(backgroundImage, 0, 0, Window.getCanvas().getWidth(),
+						Window.getCanvas().getHeight(), null);
+		}
 		
 		widgets.stream().forEach(obj -> {
 			obj.render(g);

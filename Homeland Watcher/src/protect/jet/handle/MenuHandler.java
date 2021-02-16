@@ -5,6 +5,7 @@ import java.util.List;
 
 import protect.jet.graphic.Image;
 import protect.jet.gui.ScreenObject;
+import protect.jet.gui.screen.GameOverScreen;
 import protect.jet.gui.screen.MainScreen;
 import protect.jet.gui.screen.PauseScreen;
 
@@ -14,12 +15,13 @@ public class MenuHandler {
 	
 	public static final int MainMenuType = 0;
 	public static final int PauseMenuType = 1;
+	public static final int OverMenuType = 2;
 	
 	private static void loadMenus() {
 		currentMenu = new MainScreen(Image.getImage("res/preview/gamePreview.png"));
-		
 		screens.add(currentMenu);
 		screens.add(new PauseScreen());
+		screens.add(new GameOverScreen());
 	}
 	
 	public static void setup() {

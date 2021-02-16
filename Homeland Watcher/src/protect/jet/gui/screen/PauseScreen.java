@@ -1,8 +1,5 @@
 package protect.jet.gui.screen;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
 import org.jarzarr.code.window.Window;
 
 import protect.jet.Main;
@@ -17,14 +14,7 @@ import protect.jet.handle.ObjectHandler;
 public class PauseScreen extends ScreenObject {
 
 	public PauseScreen() {
-		super(Color.black);
-	}
-	
-	@Override
-	public void render(Graphics2D g) {
-		widgets.stream().forEach(obj -> {
-			obj.render(g);
-		});
+		super();
 	}
 
 	@Override

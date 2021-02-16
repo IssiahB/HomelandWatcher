@@ -8,7 +8,12 @@ import java.util.Random;
 
 import org.jarzarr.code.window.Window;
 
+import protect.jet.Main;
+import protect.jet.Main.GameState;
+import protect.jet.audio.GameMusic;
+import protect.jet.audio.GameMusic.SongType;
 import protect.jet.graphic.Backgrounds;
+import protect.jet.handle.MenuHandler;
 import protect.jet.handle.ObjectHandler;
 import protect.jet.level.LevelObject;
 import protect.jet.object.enemy.EnemyFormation;
@@ -25,6 +30,7 @@ public class LevelEndless extends LevelObject {
 
 	@Override
 	public void update() {
+		levelDied();
 		updateFormation();
 	}
 
@@ -82,6 +88,7 @@ public class LevelEndless extends LevelObject {
 			hasLevelBeenRendered = false;
 
 			currentFormation = new EnemyFormation(5, 5, 30, 10);
+			// Increase Difficulty Slightly
 			currentFormation.getFormattedEnemies().stream().forEach(enemy -> {
 				enemy.setShotSpeed(
 						enemy.getShotSpeed() / (1 + ((currentWave * 2) / 10)));
@@ -89,6 +96,15 @@ public class LevelEndless extends LevelObject {
 						enemy.getSpeedCount() / (1 + ((currentWave * 2) / 10)));
 			});
 			ObjectHandler.add(currentFormation);
+		}
+	}
+	
+	private void levelDied() {
+		if (levelOver) {
+			MenuHandler.setCurrentMenu(MenuHandler.getScreenFromList(MenuHandler.OverMenuType));
+			Main.setCurrentState(GameState.menu);
+			ObjectHandler.removeAll();
+			GameMusic.playSong(SongType.MenuMusic);
 		}
 	}
 	

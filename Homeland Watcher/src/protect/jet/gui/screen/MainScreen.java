@@ -3,6 +3,8 @@ package protect.jet.gui.screen;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+import org.jarzarr.code.EngineLoop;
+import org.jarzarr.code.EngineLoopInterface;
 import org.jarzarr.code.window.Window;
 
 import protect.jet.Main;
@@ -55,7 +57,7 @@ public class MainScreen extends ScreenObject {
 		
 		ButtonWidget exitBtn = new ButtonWidget(100, 550, 200, 40, "Exit") {
 			public void onClick() {
-				
+				EngineLoop.endLoop();
 			}
 		};
 

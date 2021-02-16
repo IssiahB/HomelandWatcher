@@ -25,7 +25,7 @@ public class ObjectHandler {
 	}
 	
 	public static void renderObjects(Graphics2D g) {
-		objectList.parallelStream().forEach(object -> {
+		objectList.stream().forEach(object -> {
 			if (objectList.contains(object))
 				if (isObjectOnScreen(object))
 					object.render(g);
